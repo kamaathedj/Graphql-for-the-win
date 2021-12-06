@@ -1,0 +1,24 @@
+type Query {
+    customers:[Customer!]!
+    getByName(name:String):Customer
+}
+type Customer{
+    id:ID!
+    name:String!
+    registered:String!
+    orders:[Order!]!
+}
+
+type Order{
+    id : ID!
+    customerId :ID
+    type: choice!
+}
+
+enum choice {
+    food,electronic,enabler
+}
+type Mutation {
+    addCustomer( name : String): Customer
+    removeCustomer(id:Int): Boolean
+}
