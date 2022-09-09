@@ -4,6 +4,7 @@ import com.kamaathedj.Graphql.model.Customer;
 import com.kamaathedj.Graphql.repository.CustomerRepository;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -19,12 +20,13 @@ public class CustomerService {
         this.repository = repository;
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('ROLE_ADMIN')")
+    //@Secured({"ROLE_ADMIN"})
     public Flux<Customer> getCustomers(){
         return repository.findAll();
     }
-    @Secured({"ROLE_ADMIN"})
-    public Mono<Customer> getCustomerByName(String name){
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public Mono<Customer> getCustomerByName(String name ){
         return repository.findByName(name);
     }
 

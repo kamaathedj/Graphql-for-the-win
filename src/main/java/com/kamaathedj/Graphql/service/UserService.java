@@ -10,7 +10,7 @@ import java.util.Collection;
 import java.util.List;
 
 public class UserService {
-    public final static class UserServiceDetails extends LoginUser implements UserDetails{
+    public final static class UserServiceDetails extends LoginUser implements UserDetails {
 
 
         public UserServiceDetails(LoginUser user) {
@@ -23,13 +23,12 @@ public class UserService {
             if (this.isAdmin()) {
                 roles.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 
-            }else{
+            } else {
                 roles.add(new SimpleGrantedAuthority("ROLE_USER"));
             }
             return roles;
 
         }
-
 
 
         @Override
@@ -51,5 +50,7 @@ public class UserService {
         public boolean isEnabled() {
             return true;
         }
+
+
     }
 }
